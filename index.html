@@ -1,0 +1,565 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f7f1e8">
+  <meta name="description" content="Beauty Art Salon & Academy — beleza, cuidado e arte no Jaraguá, São Paulo.">
+  <title>Beauty Art Salon & Academy</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --cream: #f7f1e8;
+      --white: #fffdf9;
+      --brown: #39291f;
+      --gold: #a9844c;
+      --muted: #776d63;
+      --line: #e5d9ca;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--white);
+      color: var(--brown);
+      font-family: "DM Sans", sans-serif;
+      line-height: 1.6;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    img { display: block; width: 100%; object-fit: cover; }
+
+    .container {
+      width: min(1160px, 90%);
+      margin: auto;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(255,253,249,.96);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(12px);
+    }
+
+    nav {
+      min-height: 78px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .logo {
+      font-family: "Playfair Display", serif;
+      font-size: 23px;
+      line-height: 1.1;
+      letter-spacing: 1px;
+    }
+
+    .logo span {
+      display: block;
+      margin-top: 5px;
+      font-family: "DM Sans", sans-serif;
+      font-size: 9px;
+      letter-spacing: 3px;
+      text-align: center;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 24px;
+      font-size: 13px;
+    }
+
+    .nav-links a:hover { color: var(--gold); }
+
+    .button {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      padding: 13px 22px;
+      border: 1px solid var(--gold);
+      border-radius: 30px;
+      font-size: 13px;
+      font-weight: 600;
+      transition: .25s;
+      cursor: pointer;
+    }
+
+    .button.primary {
+      color: white;
+      background: var(--gold);
+    }
+
+    .button:hover {
+      background: var(--brown);
+      color: white;
+      border-color: var(--brown);
+      transform: translateY(-2px);
+    }
+
+    .hero {
+      min-height: 570px;
+      display: flex;
+      align-items: center;
+      background:
+        linear-gradient(90deg, rgba(35,23,16,.83), rgba(35,23,16,.22)),
+        url("https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=1800&q=85")
+        center 45% / cover;
+      color: white;
+    }
+
+    .hero-content { max-width: 620px; padding: 90px 0; }
+
+    .eyebrow {
+      color: var(--gold);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+    }
+
+    .hero .eyebrow { color: #e9c991; }
+
+    h1, h2, h3 {
+      font-family: "Playfair Display", serif;
+      font-weight: 400;
+      line-height: 1.15;
+    }
+
+    h1 {
+      margin: 20px 0;
+      font-size: clamp(43px, 6vw, 76px);
+    }
+
+    h1 em { font-weight: 400; }
+
+    .hero p {
+      max-width: 420px;
+      margin-bottom: 28px;
+      color: #f2e9de;
+    }
+
+    .actions { display: flex; flex-wrap: wrap; gap: 12px; }
+
+    .hero .button:not(.primary) {
+      border-color: rgba(255,255,255,.65);
+    }
+
+    section { padding: 90px 0; }
+
+    .section-heading {
+      max-width: 650px;
+      margin-bottom: 38px;
+    }
+
+    .section-heading h2 {
+      margin: 12px 0;
+      font-size: clamp(32px, 4vw, 46px);
+    }
+
+    .section-heading p, .muted { color: var(--muted); }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: 60px;
+    }
+
+    .about-image {
+      height: 430px;
+      border-radius: 4px;
+    }
+
+    .about-copy h2 { margin: 15px 0 20px; font-size: 42px; }
+
+    .about-copy p { margin-bottom: 22px; color: var(--muted); }
+
+    .services { background: var(--cream); }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+
+    .card {
+      overflow: hidden;
+      background: var(--white);
+      border: 1px solid var(--line);
+      transition: transform .25s, box-shadow .25s;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 35px #39291f12;
+    }
+
+    .card img { height: 235px; }
+
+    .card-body { padding: 24px; }
+
+    .card h3 { margin-bottom: 10px; font-size: 24px; }
+
+    .card p { margin-bottom: 18px; color: var(--muted); font-size: 14px; }
+
+    .text-link {
+      color: var(--gold);
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+    }
+
+    .gallery-grid img {
+      height: 290px;
+      cursor: pointer;
+      transition: transform .3s;
+    }
+
+    .gallery-grid img:hover { transform: scale(1.02); }
+
+    .academy {
+      background: var(--brown);
+      color: white;
+    }
+
+    .academy-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 50px;
+      align-items: center;
+    }
+
+    .academy h2 { margin: 15px 0; font-size: 44px; }
+
+    .academy p { margin-bottom: 25px; color: #e2d7ca; }
+
+    .academy img { height: 340px; }
+
+    .contact { background: var(--cream); }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+    }
+
+    .contact h2 { margin: 12px 0 20px; font-size: 42px; }
+
+    .contact p { margin-bottom: 16px; color: var(--muted); }
+
+    .contact-form { display: grid; gap: 14px; }
+
+    input, textarea, select {
+      width: 100%;
+      padding: 14px;
+      border: 1px solid var(--line);
+      background: var(--white);
+      color: var(--brown);
+      font: inherit;
+      border-radius: 3px;
+    }
+
+    textarea { min-height: 110px; resize: vertical; }
+
+    footer {
+      padding: 40px 0;
+      background: #251a14;
+      color: white;
+    }
+
+    .footer-content {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 25px;
+      flex-wrap: wrap;
+    }
+
+    footer p { color: #d5c6b7; font-size: 12px; }
+
+    .whatsapp-float {
+      position: fixed;
+      right: 22px;
+      bottom: 22px;
+      z-index: 20;
+      padding: 14px 20px;
+      border-radius: 40px;
+      background: #277c52;
+      color: white;
+      font-size: 13px;
+      font-weight: 700;
+      box-shadow: 0 5px 20px #0002;
+    }
+
+    @media (max-width: 850px) {
+      .nav-links { gap: 12px; font-size: 11px; }
+      .nav-cta { display: none; }
+      .about-grid, .academy-grid, .contact-grid { grid-template-columns: 1fr; gap: 30px; }
+      .cards { grid-template-columns: repeat(2, 1fr); }
+      .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+      .about-image { height: 350px; }
+    }
+
+    @media (max-width: 560px) {
+      nav { min-height: 70px; }
+      .logo { font-size: 18px; }
+      .nav-links {
+        overflow-x: auto;
+        max-width: 58%;
+        gap: 15px;
+      }
+      .nav-links a { white-space: nowrap; }
+      .hero { min-height: 500px; }
+      .hero-content { padding: 65px 0; }
+      section { padding: 65px 0; }
+      .cards { grid-template-columns: 1fr; }
+      .gallery-grid img { height: 200px; }
+      .academy h2, .contact h2, .about-copy h2 { font-size: 34px; }
+    }
+  </style>
+</head>
+
+<body>
+<header>
+  <nav class="container">
+    <a href="#inicio" class="logo">
+      BEAUTY ART
+      <span>SALON & ACADEMY</span>
+    </a>
+
+    <div class="nav-links">
+      <a href="#inicio">Início</a>
+      <a href="#sobre">Sobre</a>
+      <a href="#servicos">Serviços</a>
+      <a href="#galeria">Galeria</a>
+      <a href="#academy">Academy</a>
+      <a href="#contato">Contato</a>
+    </div>
+
+    <a class="button primary nav-cta" data-whatsapp href="#contato">
+      Agende seu horário
+    </a>
+  </nav>
+</header>
+
+<main>
+  <section class="hero" id="inicio">
+    <div class="container hero-content">
+      <div class="eyebrow">Beauty Art Salon & Academy</div>
+      <h1>Sua beleza,<br><em>nossa arte.</em></h1>
+      <p>Beleza, cuidado e transformação em cada detalhe.</p>
+      <div class="actions">
+        <a href="#servicos" class="button primary">Conheça nossos serviços</a>
+        <a href="#contato" class="button" data-whatsapp>Agende seu horário</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="sobre">
+    <div class="container about-grid">
+      <img class="about-image"
+        src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=1000&q=85"
+        alt="Ambiente profissional de beleza">
+
+      <div class="about-copy">
+        <div class="eyebrow">Sobre o salão</div>
+        <h2>Mais do que beleza, uma experiência.</h2>
+        <p>Um espaço dedicado ao cuidado, à beleza e à valorização da sua identidade.</p>
+        <p>Conheça nosso trabalho e descubra as opções de atendimento disponíveis.</p>
+        <p><strong>Alba Lopes</strong><br><span class="muted">Profissional associada ao salão — biografia a confirmar.</span></p>
+        <a href="#contato" class="button">Entre em contato</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="services" id="servicos">
+    <div class="container">
+      <div class="section-heading">
+        <div class="eyebrow">Nossos serviços</div>
+        <h2>Cuidado em cada detalhe.</h2>
+        <p>Consulte os serviços disponíveis e encontre a opção ideal para você.</p>
+      </div>
+
+      <div class="cards">
+        <article class="card">
+          <img src="https://images.unsplash.com/photo-1560869713-7d0a29430803?auto=format&fit=crop&w=800&q=80" alt="Cabelo com acabamento profissional">
+          <div class="card-body">
+            <h3>Cortes e finalização</h3>
+            <p>Consulte as opções de corte e finalização disponíveis.</p>
+            <a class="text-link" data-whatsapp href="#contato">Consultar serviço →</a>
+          </div>
+        </article>
+
+        <article class="card">
+          <img src="https://images.unsplash.com/photo-1519699047748-de8e457a634e?auto=format&fit=crop&w=800&q=80" alt="Cabelos com coloração">
+          <div class="card-body">
+            <h3>Coloração</h3>
+            <p>Consulte possibilidades de coloração e iluminação.</p>
+            <a class="text-link" data-whatsapp href="#contato">Consultar serviço →</a>
+          </div>
+        </article>
+
+        <article class="card">
+          <img src="https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?auto=format&fit=crop&w=800&q=80" alt="Interior de salão de beleza">
+          <div class="card-body">
+            <h3>Tratamentos capilares</h3>
+            <p>Conheça os tratamentos oferecidos pelo estabelecimento.</p>
+            <a class="text-link" data-whatsapp href="#contato">Consultar serviço →</a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="galeria">
+    <div class="container">
+      <div class="section-heading">
+        <div class="eyebrow">Galeria</div>
+        <h2>Beleza em cada detalhe.</h2>
+        <p>Referências visuais demonstrativas. Substitua-as por trabalhos reais autorizados do salão.</p>
+      </div>
+
+      <div class="gallery-grid">
+        <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=600&q=80" alt="Referência de cabelo 1" loading="lazy">
+        <img src="https://images.unsplash.com/photo-1519699047748-de8e457a634e?auto=format&fit=crop&w=600&q=80" alt="Referência de cabelo 2" loading="lazy">
+        <img src="https://images.unsplash.com/photo-1560869713-7d0a29430803?auto=format&fit=crop&w=600&q=80" alt="Referência de cabelo 3" loading="lazy">
+        <img src="https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?auto=format&fit=crop&w=600&q=80" alt="Referência de salão 4" loading="lazy">
+      </div>
+    </div>
+  </section>
+
+  <section class="academy" id="academy">
+    <div class="container academy-grid">
+      <div>
+        <div class="eyebrow">Beauty Art Academy</div>
+        <h2>Conhecimento que transforma.</h2>
+        <p>Consulte informações sobre cursos e formação profissional, caso estejam disponíveis no estabelecimento.</p>
+        <a href="#contato" class="button" data-whatsapp>Consultar informações</a>
+      </div>
+      <img src="https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=1000&q=85" alt="Ambiente de aprendizagem profissional" loading="lazy">
+    </div>
+  </section>
+
+  <section class="contact" id="contato">
+    <div class="container contact-grid">
+      <div>
+        <div class="eyebrow">Fale conosco</div>
+        <h2>Vamos cuidar da sua beleza?</h2>
+        <p>Entre em contato para consultar serviços, preços e horários disponíveis.</p>
+        <p><strong>Localização:</strong> Jaraguá, São Paulo — endereço a confirmar.</p>
+        <p><strong>WhatsApp:</strong> configure o número comercial antes de publicar.</p>
+        <a class="button primary" data-whatsapp href="#contato">Conversar pelo WhatsApp</a>
+      </div>
+
+      <form class="contact-form" id="contactForm">
+        <input id="name" type="text" placeholder="Seu nome" required>
+        <input id="phone" type="tel" placeholder="Seu telefone (opcional)">
+        <select id="service" required>
+          <option value="">O que você deseja consultar?</option>
+          <option>Serviços de beleza</option>
+          <option>Preços e horários</option>
+          <option>Informações sobre a Academy</option>
+          <option>Outros assuntos</option>
+        </select>
+        <textarea id="message" placeholder="Escreva sua mensagem (opcional)"></textarea>
+        <button type="submit" class="button primary">Enviar pelo WhatsApp</button>
+        <p id="formStatus" role="status" aria-live="polite"></p>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container footer-content">
+    <a href="#inicio" class="logo">
+      BEAUTY ART
+      <span>SALON & ACADEMY</span>
+    </a>
+    <p>© <span id="year"></span> Beauty Art Salon & Academy. Todos os direitos reservados.</p>
+    <a href="#inicio">Voltar ao início ↑</a>
+  </div>
+</footer>
+
+<script>
+  // CONFIGURE o número comercial abaixo antes de publicar.
+  // Use código do país + DDD + número, somente dígitos.
+  const WHATSAPP_NUMBER = "";
+
+  function whatsappUrl(message) {
+    if (!/^\d{12,13}$/.test(WHATSAPP_NUMBER)) return null;
+    return "https://wa.me/" + WHATSAPP_NUMBER +
+      "?text=" + encodeURIComponent(message);
+  }
+
+  document.querySelectorAll("[data-whatsapp]").forEach(link => {
+    link.addEventListener("click", event => {
+      const url = whatsappUrl(
+        "Olá! Gostaria de conhecer os serviços do Beauty Art Salon & Academy e consultar os horários disponíveis."
+      );
+
+      if (!url) {
+        event.preventDefault();
+        document.getElementById("formStatus").textContent =
+          "O WhatsApp comercial ainda precisa ser configurado pelo responsável pelo site.";
+        document.getElementById("contato").scrollIntoView({ behavior: "smooth" });
+        return;
+      }
+
+      event.preventDefault();
+      window.open(url, "_blank", "noopener,noreferrer");
+    });
+  });
+
+  document.getElementById("contactForm").addEventListener("submit", event => {
+    event.preventDefault();
+
+    const name = document.getElementById("name").value.trim();
+    const phone = document.getElementById("phone").value.trim();
+    const service = document.getElementById("service").value;
+    const message = document.getElementById("message").value.trim();
+
+    const status = document.getElementById("formStatus");
+    const url = whatsappUrl(
+      "Olá! Meu nome é " + name +
+      ".\nAssunto: " + service +
+      (phone ? "\nMeu telefone: " + phone : "") +
+      (message ? "\nMensagem: " + message : "")
+    );
+
+    if (!url) {
+      status.textContent =
+        "O formulário está preenchido, mas o responsável precisa configurar o WhatsApp comercial antes do envio.";
+      return;
+    }
+
+    window.open(url, "_blank", "noopener,noreferrer");
+    status.textContent = "Mensagem preparada para envio pelo WhatsApp.";
+  });
+
+  document.getElementById("year").textContent = new Date().getFullYear();
+
+  document.querySelectorAll(".gallery-grid img").forEach(img => {
+    img.addEventListener("click", () => {
+      window.open(img.src, "_blank", "noopener,noreferrer");
+    });
+  });
+</script>
+</body>
+</html>
